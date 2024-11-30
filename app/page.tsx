@@ -1,6 +1,6 @@
 export default function Home() {
   return (
-    <h1 className="text-3xl font-black text-white">
+    <h1 className="text-3xl font-black text-light-900">
       Welcome to the world of Nextjs!
     </h1>
   );
