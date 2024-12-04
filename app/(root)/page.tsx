@@ -35,11 +35,11 @@ const questions = [
   },
 ];
 
-interface SearchParams {
+interface searchParams {
   searchParams: Promise<{ [key: string]: string }>;
 }
 
-export default async function Home({ searchParams }: SearchParams) {
+export default async function Home({ searchParams }: searchParams) {
   const { query = "" } = await searchParams;
 
   const filteredQuestions = questions.filter((question) =>
