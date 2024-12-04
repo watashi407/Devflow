@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -9,14 +10,15 @@ import { sidebarLinks } from "@/constants";
 import { cn } from "@/lib/utils";
 
 const NavLinks = ({ isMobileNav = false }: { isMobileNav?: boolean }) => {
-  const pathName = usePathname();
+  const pathname = usePathname();
   const userId = 1;
+
   return (
     <>
       {sidebarLinks.map((item) => {
         const isActive =
-          (pathName.includes(item.route) && item.route.length > 1) ||
-          pathName === item.route;
+          (pathname.includes(item.route) && item.route.length > 1) ||
+          pathname === item.route;
 
         if (item.route === "/profile") {
           if (userId) item.route = `${item.route}/${userId}`;
@@ -31,14 +33,14 @@ const NavLinks = ({ isMobileNav = false }: { isMobileNav?: boolean }) => {
               isActive
                 ? "primary-gradient rounded-lg text-light-900"
                 : "text-dark300_light900",
-              "flex items-center justify-start gap-4 bg-transparent p-4"
+              "flex items-center justify-start gap-4 bg-transparent p-3"
             )}
           >
             <Image
               src={item.imgURL}
               alt={item.label}
-              height={20}
               width={20}
+              height={20}
               className={cn({ "invert-colors": !isActive })}
             />
             <p
