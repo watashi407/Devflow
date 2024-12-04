@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
+import LocalSearch from "@/components/search/LocalSearch";
+
 import MobileNavigation from "./MobileNavigation";
 import Theme from "./Theme";
 
@@ -20,8 +22,7 @@ const Navbar = () => {
           Dev<span className="text-primary-500">Flow</span>
         </p>
       </Link>
-
-      <p>Global Search</p>
+      <div className="min-w-[38rem]">{/* <LocalSearch /> */}</div>
 
       <div className="flex-between gap-5">
         <Theme />
