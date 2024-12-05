@@ -1,6 +1,7 @@
 import { SearchParams } from "next/dist/server/request/search-params";
 import Link from "next/link";
 
+import HomeFilter from "@/components/filters/HomeFilter";
 import LocalSearch from "@/components/search/LocalSearch";
 import { Button } from "@/components/ui/button";
 import ROUTES from "@/constants/routes";
@@ -40,11 +41,23 @@ interface searchParams {
 }
 
 export default async function Home({ searchParams }: searchParams) {
-  const { query = "" } = await searchParams;
+  const { query = "", filter = "" } = await searchParams;
 
-  const filteredQuestions = questions.filter((question) =>
-    question.title.toLowerCase().includes(query?.toLowerCase())
-  );
+  const filteredQuestions = questions.filter((question) => {
+    // Match query against the title
+    const matchesQuery = question.title
+      .toLowerCase()
+      .includes(query.toLowerCase());
+
+    // Match filter against tags or author name, adjust logic as needed
+    const matchesFilter = filter
+      ? question.tags.some(
+          (tag) => tag.name.toLowerCase() === filter.toLowerCase()
+        ) || question.author.name.toLowerCase() === filter.toLowerCase()
+      : true; // If no filter is provided, include all questions
+
+    return matchesQuery && matchesFilter;
+  });
 
   return (
     <>
@@ -65,7 +78,7 @@ export default async function Home({ searchParams }: searchParams) {
           route="/"
         />
       </section>
-      HomeFilter
+      <HomeFilter />
       <div className="mt-10 flex w-full flex-col gap-6">
         {filteredQuestions.map((question) => (
           <h1 key={question._id}>{question.title}</h1>
