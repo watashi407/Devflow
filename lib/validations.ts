@@ -1,3 +1,5 @@
+import { title } from "process";
+
 import { z } from "zod";
 
 export const SignInSchema = z.object({
@@ -48,4 +50,21 @@ export const SignUpSchema = z.object({
     .regex(/[^a-zA-Z0-9]/, {
       message: "Password must contain at least one special character.",
     }),
+});
+
+export const AskAQuestionSchema = z.object({
+  title: z
+    .string()
+    .min(5, { message: "Title is required." })
+    .max(100, { message: "Title cannot exceed 5000 characters." }),
+  content: z.string().min(1, { message: "Body is required." }),
+  tags: z
+    .array(
+      z
+        .string()
+        .min(1, { message: "Tag is required." })
+        .max(30, { message: "Tags cannot exceed thirty characters." })
+    )
+    .min(1, { message: "At least one tag is required." })
+    .max(3, { message: "Cannot add more thans 3 tags." }),
 });
