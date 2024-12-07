@@ -1,5 +1,3 @@
-import { title } from "process";
-
 import { z } from "zod";
 
 export const SignInSchema = z.object({
@@ -52,19 +50,20 @@ export const SignUpSchema = z.object({
     }),
 });
 
-export const AskAQuestionSchema = z.object({
+export const AskQuestionSchema = z.object({
   title: z
     .string()
     .min(5, { message: "Title is required." })
-    .max(100, { message: "Title cannot exceed 5000 characters." }),
+    .max(100, { message: "Title cannot exceed 100 characters." }),
+
   content: z.string().min(1, { message: "Body is required." }),
   tags: z
     .array(
       z
         .string()
         .min(1, { message: "Tag is required." })
-        .max(30, { message: "Tags cannot exceed thirty characters." })
+        .max(30, { message: "Tag cannot exceed 30 characters." })
     )
     .min(1, { message: "At least one tag is required." })
-    .max(3, { message: "Cannot add more thans 3 tags." }),
+    .max(3, { message: "Cannot add more than 3 tags." }),
 });
