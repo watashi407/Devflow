@@ -5,6 +5,9 @@ import HomeFilter from "@/components/filters/HomeFilter";
 import LocalSearch from "@/components/search/LocalSearch";
 import { Button } from "@/components/ui/button";
 import ROUTES from "@/constants/routes";
+import handleError from "@/lib/handlers/error";
+import logger from "@/lib/logger";
+import dbConnect from "@/lib/mongoose";
 const questions = [
   {
     _id: "1",
@@ -65,9 +68,19 @@ const questions = [
 interface searchParams {
   searchParams: Promise<{ [key: string]: string }>;
 }
+const test = async () => {
+  try {
+    await dbConnect();
+  } catch (error) {
+    return handleError(error);
+  }
+};
 
 export default async function Home({ searchParams }: searchParams) {
   const { query = "", filter = "" } = await searchParams;
+
+  const result = await test();
+  logger.info(result);
 
   const filteredQuestions = questions.filter((question) => {
     // Match query against the title
