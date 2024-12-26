@@ -67,3 +67,39 @@ export const AskQuestionSchema = z.object({
     .min(1, { message: "At least one tag is required." })
     .max(3, { message: "Cannot add more than 3 tags." }),
 });
+
+export const UserSchemaValidation = z.object({
+  name: z
+    .string()
+    .min(1, { message: "Name is required." })
+    .max(50, { message: "Username cannot exceed 50 characters." })
+    .regex(/^[a-zA-Z\s]+$/, {
+      message: "Name can only contain letters and spaces.",
+    }),
+
+  username: z
+    .string()
+    .min(3, { message: "Username must be at least 3 characters long." })
+    .max(30, { message: "Username cannot exceed 30 characters." })
+    .regex(/^[a-zA-Z0-9_]+$/, {
+      message: "Username can only contain letters, numbers, and underscores.",
+    }),
+
+  email: z
+    .string()
+    .min(1, { message: "Email is required." })
+    .email({ message: "Please provide a valid email address." }),
+
+  bio: z.string().optional(),
+  image: z.string().url({ message: "Invalid URL format." }).optional(),
+  location: z
+    .string()
+    .max(30, { message: "Location cannot exceed 30 characters." })
+    .optional(),
+  portfolio: z.string().url({ message: "Invalid URL format." }).optional(),
+  reputation: z
+    .number()
+    .int()
+    .min(0, { message: "Reputation cannot be negative." })
+    .optional(),
+});
