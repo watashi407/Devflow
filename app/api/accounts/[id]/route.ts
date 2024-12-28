@@ -13,13 +13,13 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params;
-  if (!id) throw new NotFoundError("User");
+  if (!id) throw new NotFoundError("Account");
 
   try {
     await dbConnect();
 
     const account = await Account.findById({ _id: id });
-    if (!account) throw new NotFoundError("User");
+    if (!account) throw new NotFoundError("Account");
 
     return NextResponse.json({ success: true, data: account }, { status: 200 });
   } catch (error) {
@@ -34,7 +34,7 @@ export async function PUT(
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params;
-  if (!id) throw new NotFoundError("User");
+  if (!id) throw new NotFoundError("Account");
 
   try {
     await dbConnect();
