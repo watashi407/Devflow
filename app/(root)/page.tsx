@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { auth } from "@/auth";
 import QuestionCard from "@/components/cards/QuestionCard";
 import HomeFilter from "@/components/filters/HomeFilter";
 import LocalSearch from "@/components/search/LocalSearch";
@@ -69,19 +70,23 @@ const questions = [
 interface searchParams {
   searchParams: Promise<{ [key: string]: string }>;
 }
-const test = async () => {
-  try {
-    return await api.users.getAll();
-  } catch (error) {
-    return handleError(error);
-  }
-};
+// const test = async () => {
+//   try {
+//     return await api.users.getAll();
+//   } catch (error) {
+//     return handleError(error);
+//   }
+// };
 
 export default async function Home({ searchParams }: searchParams) {
   const { query = "", filter = "" } = await searchParams;
 
-  const users = await test();
-  logger.info(users);
+  const session = await auth();
+
+  console.log("Session: ", session);
+
+  // const users = await test();
+  // logger.info(users);
 
   const filteredQuestions = questions.filter((question) => {
     // Match query against the title
