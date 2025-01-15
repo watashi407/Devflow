@@ -11,12 +11,12 @@ interface Author {
   image: string;
 }
 
-interface Question {
+interface QuestionT {
   _id: string;
   title: string;
-  description: string;
   tags: Tag[];
   author: Author;
+  createdAt: Date;
   upvotes: number;
   answers: number;
   views: number;
@@ -45,6 +45,11 @@ type ActionResponse<T = null> = {
 };
 
 type SuccessResponse<T = null> = ActionResponse<T> & { success: true };
-type ErrorResponse = ActionResponse & { success: false };
+type ErrorResponse = ActionResponse<undefined> & { success: false };
 type APIErrorResponse = NextResponse<ErrorResponse>;
 type APIresponse<T = null> = NextResponse<SuccessResponse<T> | ErrorResponse>;
+
+interface RouteParams {
+  params: Promise<Record<string, string>>;
+  searchParams: Promise<Record<string, string>>;
+}
