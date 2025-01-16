@@ -68,6 +68,14 @@ export const AskQuestionSchemaValidation = z.object({
     .max(3, { message: "Cannot add more than 3 tags." }),
 });
 
+export const EditQuestionSchemaValidation = AskQuestionSchemaValidation.extend({
+  questionId: z.string().min(1, { message: "Question ID is Required" }),
+});
+
+export const GetQuestionSchemaValidatiion = z.object({
+  questionId: z.string().min(1, { message: "Question ID is Required" }),
+});
+
 export const UserSchemaValidation = z.object({
   name: z
     .string()
