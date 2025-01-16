@@ -91,8 +91,6 @@ const QuestionForm = ({ question, isEdit = false }: Params) => {
     }
   };
 
-  const showToast = (result) => {};
-
   const handleCreateQuestion = async (
     data: z.infer<typeof AskQuestionSchemaValidation>
   ) => {
