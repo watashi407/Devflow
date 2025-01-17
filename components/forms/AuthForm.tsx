@@ -89,7 +89,7 @@ const AuthForm = <T extends FieldValues>({
                 <FormLabel className="paragraph-medium text-dark400_light700">
                   {field.name === "email"
                     ? "Email Address"
-                    : capitalized({ value: field.name })}
+                    : capitalized(field.name as string)}
                 </FormLabel>
                 <FormControl>
                   <Input

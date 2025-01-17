@@ -7,6 +7,10 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+export function capitalized(fieldname: string) {
+  return fieldname.charAt(0).toUpperCase() + fieldname.slice(1);
+}
+
 export const techDescriptionMap: { [key: string]: string } = {
   javascript:
     "JavaScript is a powerful language for building dynamic, interactive, and modern web applications.",
