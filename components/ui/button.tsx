@@ -5,20 +5,17 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus:outline-none focus:ring-1 focus:ring-gray-500 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        default:
-          "bg-primary text-primary-foreground hover:bg-primary/90 shadow",
-        destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90 shadow-sm",
+        default: "bg-blue-500 text-white shadow hover:bg-blue-400",
+        destructive: "bg-red-500 text-white shadow-sm hover:bg-red-400",
         outline:
-          "border-input bg-background hover:bg-accent hover:text-accent-foreground border shadow-sm",
-        secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80 shadow-sm",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
+          "border border-gray-300 bg-white shadow-sm hover:bg-gray-100 hover:text-gray-900",
+        secondary: "bg-gray-500 text-white shadow-sm hover:bg-gray-400",
+        ghost: "hover:bg-gray-100 hover:text-gray-900",
+        link: "text-blue-500 underline-offset-4 hover:underline",
       },
       size: {
         default: "h-9 px-4 py-2",
