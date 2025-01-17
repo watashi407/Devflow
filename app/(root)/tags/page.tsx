@@ -1,3 +1,6 @@
+import { redirect } from "next/navigation";
+
+import { auth } from "@/auth";
 import TagCard from "@/components/cards/TagCard";
 import DataRenderer from "@/components/DataRenderer";
 import LocalSearch from "@/components/search/LocalSearch";
@@ -7,6 +10,10 @@ import { getTags } from "@/lib/actions/tag.action";
 import { RouteParams } from "@/types/global";
 
 const Tags = async ({ searchParams }: RouteParams) => {
+  const session = await auth();
+
+  if (!session) return redirect("/sign-in");
+
   const { page, pageSize, query, filter } = await searchParams;
 
   const { success, data, error } = await getTags({

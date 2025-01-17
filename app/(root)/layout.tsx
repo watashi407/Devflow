@@ -1,13 +1,10 @@
 import React from "react";
 
-import { auth } from "@/auth";
 import LeftSidebar from "@/components/navigation/LeftSidebar";
 import Navbar from "@/components/navigation/navbar";
 import RightSidebar from "@/components/navigation/RightSidebar";
 
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
-  const session = await auth();
-
   return (
     <main className="background-light850_dark100 relative">
       {/* this Navbar views only in mobile view */}
