@@ -3,17 +3,6 @@ import { z } from "zod";
 
 import { UserSchemaValidation } from "@/lib/validations";
 
-// export interface IUser {
-//   name: string;
-//   username: string;
-//   email: string;
-//   bio?: string;
-//   image?: string;
-//   location?: string;
-//   portfolio?: string;
-//   reputation?: number;
-// }
-
 export type IUser = z.infer<typeof UserSchemaValidation>;
 
 export interface IUserDoc extends IUser, Document {}
