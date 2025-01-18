@@ -6,7 +6,7 @@ import { fetchHandlers } from "./handlers/fetch";
 
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_BASE_URL ||
-  "https://devflow-sigma-ten.vercel.app/";
+  "https://devflow-sigma-ten.vercel.app";
 export const api = {
   auth: {
     oAuthSignIn: ({
