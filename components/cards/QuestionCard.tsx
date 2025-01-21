@@ -7,13 +7,16 @@ import { QuestionT, TagT } from "@/types/global";
 
 import TagCard from "./TagCard";
 import Metric from "../Metric";
+import { Button } from "../ui/button";
 
 interface Props {
   question: QuestionT;
+  isEdit?: boolean;
 }
 
 const QuestionCard = ({
   question: { _id, title, tags, author, createdAt, upvotes, answers, views },
+  isEdit,
 }: Props) => {
   return (
     <div className="card-wrapper rounded-[10px] p-9 sm:px-11">
@@ -38,15 +41,17 @@ const QuestionCard = ({
       </div>
 
       <div className="flex-between mt-6 w-full flex-wrap gap-3">
-        <Metric
-          imgUrl={author.image}
-          alt={author.name}
-          value={author.name}
-          title={`• asked ${getTimeStamp(createdAt)}`}
-          href={ROUTES.PROFILE(author._id)}
-          textStyles="body-medium text-dark400_light700"
-          isAuthor
-        />
+        {author.image && (
+          <Metric
+            imgUrl={author.image}
+            alt={author.name}
+            value={author.name}
+            title={`• asked ${getTimeStamp(createdAt)}`}
+            href={ROUTES.PROFILE(author._id)}
+            textStyles="body-medium text-dark400_light700"
+            isAuthor
+          />
+        )}
 
         <div className="flex items-center gap-3 max-sm:flex-wrap max-sm:justify-start">
           <Metric
@@ -71,6 +76,15 @@ const QuestionCard = ({
             textStyles="small-medium text-dark400_light800"
           />
         </div>
+        {isEdit && (
+          <div className="ml-auto">
+            <Link href={`${ROUTES.QUESTION(_id)}/edit`}>
+              <Button className="primary-gradient w-fit !text-light-900">
+                Edit
+              </Button>
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );
